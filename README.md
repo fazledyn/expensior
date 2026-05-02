@@ -1,31 +1,24 @@
+![banner-image](banner-image.png)
+
 # Spendyn
 
-A personal expense tracker PWA. Tracks transactions by month, category, and payment source. Works offline — data is stored locally in the browser.
+A personal expense tracker built as a PWA. Track monthly expenses by category and payment source, set budget limits, and view spending summaries — all from your phone, no app store needed.
 
 ## Features
-- Add and delete transactions with amount, category, source, and note
-- Monthly budget limits per category with progress tracking
-- Monthly summary and spending breakdown
-- Manage custom categories and payment sources
 
-## Tech
-React 18 + Vite. No backend, no accounts — `localStorage` only.
+- Add expenses with a note, amount, category, and payment source
+- Dynamic categories with monthly budget limits
+- Track spending via Discover, Chase, or Bank ACH
+- Monthly view — switch between months to see historical data
+- Summary dashboard: spend per category, per source, remaining budgets
+- Fully offline-capable, data stored locally in your browser
 
-## Run locally
-```
-npm install
-npm run dev
-```
+## Stack
 
-Open `http://localhost:5173` in your browser (or on mobile via your local network IP).
+- React + Vite
+- PWA (installable on iPhone/Android via "Add to Home Screen")
+- Built with [Claude Code](https://claude.ai/code)
 
-## Deploy (Cloudflare Pages)
+## Live App
 
-1. Push this repo to GitHub
-2. Go to Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
-3. Select this repo and set:
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-4. Click **Save and Deploy**
-
-Every push to `master` deploys automatically after setup.
+[spendyn.pages.dev](https://spendyn.pages.dev)
