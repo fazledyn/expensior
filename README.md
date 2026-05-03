@@ -1,6 +1,5 @@
 ![banner-image](banner-image.png)
 # Expensior
->>>>>>> 57b0454 (repo: Renamed app to Expensior)
 
 A personal expense tracker built as a PWA. Track monthly expenses by category and payment source, set budget limits, and view spending summaries — all from your phone, no app store needed.
 
@@ -19,6 +18,3 @@ A personal expense tracker built as a PWA. Track monthly expenses by category an
 - PWA (installable on iPhone/Android via "Add to Home Screen")
 - Built with [Claude Code](https://claude.ai/code)
 
-## Live App
-
-[spendyn.pages.dev](https://spendyn.pages.dev)
