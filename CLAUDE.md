@@ -1,4 +1,4 @@
-# Spendyn — Claude Instructions
+# Expensior — Claude Instructions
 
 ## What this is
 A personal expense tracker PWA built with React 18 + Vite. Mobile-first (max-width 430px), designed to feel like a native iOS app in the browser. No backend — all data lives in `localStorage`.

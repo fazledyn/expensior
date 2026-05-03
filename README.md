@@ -1,6 +1,6 @@
 ![banner-image](banner-image.png)
-
-# Spendyn
+# Expensior
+>>>>>>> 57b0454 (repo: Renamed app to Expensior)
 
 A personal expense tracker built as a PWA. Track monthly expenses by category and payment source, set budget limits, and view spending summaries — all from your phone, no app store needed.
 

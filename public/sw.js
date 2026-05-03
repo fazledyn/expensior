@@ -1,4 +1,4 @@
-const CACHE = 'spendyn-v1';
+const CACHE = 'expensior-v1';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
