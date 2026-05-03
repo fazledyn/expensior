@@ -205,7 +205,7 @@ const styles = {
     padding: 16,
     width: '100%',
     border: 'none',
-    color: '#fff',
+    color: '#000',
     fontSize: 16,
     fontWeight: '600',
     marginTop: 32,

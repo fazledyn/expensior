@@ -89,8 +89,8 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
   },
-  totalLabel: { color: 'rgba(255,255,255,0.8)', fontSize: 14 },
-  totalAmount: { color: '#fff', fontSize: 36, fontWeight: '700', marginTop: 4 },
+  totalLabel: { color: 'rgba(0,0,0,0.6)', fontSize: 14 },
+  totalAmount: { color: '#000', fontSize: 36, fontWeight: '700', marginTop: 4 },
   sectionTitle: {
     fontSize: 13,
     fontWeight: '700',

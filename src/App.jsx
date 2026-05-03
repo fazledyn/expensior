@@ -58,7 +58,6 @@ const styles = {
     margin: '0 auto',
     backgroundColor: COLORS.BG,
     position: 'relative',
-    boxShadow: '0 0 40px rgba(0,0,0,0.1)',
   },
   header: {
     backgroundColor: COLORS.CARD,

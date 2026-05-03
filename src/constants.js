@@ -5,7 +5,7 @@ export const STORAGE_KEYS = {
 }
 
 export const DEFAULT_SOURCES = [
-  { id: '1', name: 'Discover Credit Card' },
-  { id: '2', name: 'Chase Credit Card' },
-  { id: '3', name: 'Bank ACH' },
+  { id: '1', name: '💳 Credit Card 1' },
+  { id: '2', name: '💳 Credit Card 2' },
+  { id: '3', name: '🏦 Bank Checking Account' },
 ]

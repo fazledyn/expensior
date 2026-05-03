@@ -28,7 +28,7 @@ const styles = {
     alignItems: 'flex-end',
   },
   sheet: {
-    backgroundColor: COLORS.BG,
+    backgroundColor: COLORS.CARD,
     width: '100%',
     maxWidth: 430,
     margin: '0 auto',

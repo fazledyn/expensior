@@ -1,10 +1,10 @@
 export const COLORS = {
-  PRIMARY: '#2563eb',
-  DANGER: '#dc2626',
+  PRIMARY: '#16a34a',
+  DANGER: '#ef4444',
   SUCCESS: '#16a34a',
-  BG: '#f1f5f9',
+  BG: '#f9fafb',
   CARD: '#ffffff',
-  TEXT: '#1e293b',
-  MUTED: '#64748b',
-  BORDER: '#e2e8f0',
+  TEXT: '#111827',
+  MUTED: '#9ca3af',
+  BORDER: '#e5e7eb',
 }

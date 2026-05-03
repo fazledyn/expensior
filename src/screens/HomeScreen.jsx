@@ -69,8 +69,8 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
   },
-  totalLabel: { color: 'rgba(255,255,255,0.8)', fontSize: 14 },
-  totalAmount: { color: '#fff', fontSize: 36, fontWeight: '700', marginTop: 4 },
+  totalLabel: { color: 'rgba(0,0,0,0.6)', fontSize: 14 },
+  totalAmount: { color: '#000', fontSize: 36, fontWeight: '700', marginTop: 4 },
   card: {
     backgroundColor: COLORS.CARD,
     marginLeft: 16,
@@ -78,7 +78,6 @@ const styles = {
     marginBottom: 10,
     borderRadius: 10,
     padding: 14,
-    boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
   },
   cardRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
   catName: { fontSize: 15, fontWeight: '500', color: COLORS.TEXT },
