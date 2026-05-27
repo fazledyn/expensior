@@ -15,7 +15,7 @@ src/
   App.jsx              — tab shell (Home, Transactions, Budget, Summary, Settings)
   constants.js         — STORAGE_KEYS, DEFAULT_SOURCES
   theme.js             — COLORS
-  utils.js             — date helpers
+  utils.js             — date helpers + generateId
   storage.js           — loadData / saveData (localStorage wrapper)
   context/
     AppContext.jsx      — global state + all persist* mutations
@@ -27,6 +27,20 @@ public/
 ```
 
 Global state lives in `AppContext`. Every mutation goes through a `persist*` function that updates both React state and localStorage atomically. Never write to localStorage directly outside `storage.js`.
+
+## Storage keys
+| Key | Shape | Notes |
+|---|---|---|
+| `categories` | `{ id, name, limit }[]` | Monthly budget categories |
+| `sources` | `{ id, name }[]` | Payment sources (cards, accounts) |
+| `transactions` | `{ id, month, amount, categoryId, sourceId, note }[]` | Expense entries |
+| `income` | `{ id, month, amount, note }[]` | Income entries (paychecks); multiple per month |
+
+## Service worker strategy
+- `/assets/*` — cache-first (Vite content-hashes these filenames, so they're immutable)
+- Everything else (`index.html`, icons, manifest) — network-first with offline fallback
+
+This means deploys are picked up automatically on next open with network access. No cache version bumping needed.
 
 ## Code conventions
 - camelCase for variables and functions, PascalCase for components

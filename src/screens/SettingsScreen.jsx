@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useApp } from '../context/AppContext'
 import Modal from '../components/Modal'
 import { generateId } from '../utils'
@@ -8,6 +8,7 @@ export default function SettingsScreen() {
   const {
     categories, addCategory, updateCategory, deleteCategory,
     sources, addSource, updateSource, deleteSource,
+    transactions, income, replaceAllData,
   } = useApp()
 
   const [catModal, setCatModal] = useState(false)
@@ -16,6 +17,8 @@ export default function SettingsScreen() {
   const [editingSrc, setEditingSrc] = useState(null)
   const [catForm, setCatForm] = useState({ name: '', limit: '' })
   const [srcForm, setSrcForm] = useState({ name: '' })
+
+  const fileInputRef = useRef(null)
 
   const openAddCat = () => { setEditingCat(null); setCatForm({ name: '', limit: '' }); setCatModal(true) }
   const openEditCat = (cat) => { setEditingCat(cat); setCatForm({ name: cat.name, limit: String(cat.limit) }); setCatModal(true) }
@@ -58,6 +61,46 @@ export default function SettingsScreen() {
     if (window.confirm(`Delete "${src.name}"?`)) deleteSource(src.id)
   }
 
+  const handleExport = () => {
+    const data = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      categories,
+      sources,
+      transactions,
+      income,
+    }
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `expensior-backup-${new Date().toISOString().slice(0, 10)}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const handleImport = () => {
+    fileInputRef.current.value = ''
+    fileInputRef.current.click()
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = async (evt) => {
+      try {
+        const data = JSON.parse(evt.target.result)
+        if (!window.confirm('This will replace all existing data. Continue?')) return
+        await replaceAllData(data)
+        alert('Data imported successfully.')
+      } catch {
+        alert('Invalid file. Please select a valid Expensior backup.')
+      }
+    }
+    reader.readAsText(file)
+  }
+
   return (
     <div style={styles.container}>
       <p style={styles.sectionTitle}>Categories</p>
@@ -86,6 +129,19 @@ export default function SettingsScreen() {
         </div>
       ))}
       <button style={styles.addBtn} onClick={openAddSrc}>+ Add Source</button>
+
+      <p style={{ ...styles.sectionTitle, marginTop: 40 }}>Data</p>
+      <button style={styles.addBtn} onClick={handleExport}>Export Data</button>
+      <button style={{ ...styles.addBtn, marginTop: 8, color: COLORS.DANGER, borderColor: COLORS.DANGER }} onClick={handleImport}>
+        Import Data
+      </button>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
 
       <Modal visible={catModal}>
         <p style={styles.modalTitle}>{editingCat ? 'Edit Category' : 'New Category'}</p>
@@ -178,6 +234,7 @@ const styles = {
     fontSize: 14,
     fontWeight: '500',
     width: 'calc(100% - 32px)',
+    cursor: 'pointer',
   },
   modalTitle: { fontSize: 22, fontWeight: '700', color: COLORS.TEXT, marginBottom: 20, marginTop: 16 },
   label: {
@@ -198,6 +255,7 @@ const styles = {
     color: COLORS.TEXT,
     width: '100%',
     display: 'block',
+    boxSizing: 'border-box',
   },
   submitBtn: {
     backgroundColor: COLORS.PRIMARY,

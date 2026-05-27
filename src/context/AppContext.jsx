@@ -10,6 +10,7 @@ export function AppProvider({ children }) {
   const [categories, setCategories] = useState([])
   const [sources, setSources] = useState([])
   const [transactions, setTransactions] = useState([])
+  const [income, setIncome] = useState([])
 
   useEffect(() => {
     initData()
@@ -19,9 +20,11 @@ export function AppProvider({ children }) {
     const savedCategories = await loadData(STORAGE_KEYS.CATEGORIES)
     const savedSources = await loadData(STORAGE_KEYS.SOURCES)
     const savedTransactions = await loadData(STORAGE_KEYS.TRANSACTIONS)
+    const savedIncome = await loadData(STORAGE_KEYS.INCOME)
 
     if (savedCategories) setCategories(savedCategories)
     if (savedTransactions) setTransactions(savedTransactions)
+    if (savedIncome) setIncome(savedIncome)
 
     if (savedSources) {
       setSources(savedSources)
@@ -46,6 +49,11 @@ export function AppProvider({ children }) {
     await saveData(STORAGE_KEYS.TRANSACTIONS, list)
   }
 
+  const persistIncome = async (list) => {
+    setIncome(list)
+    await saveData(STORAGE_KEYS.INCOME, list)
+  }
+
   const addCategory = (cat) => persistCategories([...categories, cat])
   const updateCategory = (updated) => persistCategories(categories.map(c => c.id === updated.id ? updated : c))
   const deleteCategory = (id) => persistCategories(categories.filter(c => c.id !== id))
@@ -57,15 +65,29 @@ export function AppProvider({ children }) {
   const addTransaction = (txn) => persistTransactions([...transactions, txn])
   const deleteTransaction = (id) => persistTransactions(transactions.filter(t => t.id !== id))
 
+  const addIncome = (entry) => persistIncome([...income, entry])
+  const deleteIncome = (id) => persistIncome(income.filter(e => e.id !== id))
+
+  const replaceAllData = async (data) => {
+    await persistCategories(data.categories || [])
+    await persistSources(data.sources || [])
+    await persistTransactions(data.transactions || [])
+    await persistIncome(data.income || [])
+  }
+
   const monthTransactions = transactions.filter(t => t.month === selectedMonth)
+  const monthIncome = income.filter(e => e.month === selectedMonth)
 
   return (
     <AppContext.Provider value={{
       selectedMonth, setSelectedMonth,
       categories, sources, transactions, monthTransactions,
+      income, monthIncome,
       addCategory, updateCategory, deleteCategory,
       addSource, updateSource, deleteSource,
       addTransaction, deleteTransaction,
+      addIncome, deleteIncome,
+      replaceAllData,
     }}>
       {children}
     </AppContext.Provider>

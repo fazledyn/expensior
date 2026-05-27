@@ -10,6 +10,8 @@ A personal expense tracker built as a PWA. Track monthly expenses by category an
 - Track spending via Discover, Chase, or Bank ACH
 - Monthly view — switch between months to see historical data
 - Summary dashboard: spend per category, per source, remaining budgets
+- Income ledger on the home screen — log paychecks as they arrive, multiple per month
+- Export all data as a JSON backup; import to restore
 - Fully offline-capable, data stored locally in your browser
 
 ## Stack

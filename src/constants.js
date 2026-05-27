@@ -2,6 +2,7 @@ export const STORAGE_KEYS = {
   CATEGORIES: 'categories',
   SOURCES: 'sources',
   TRANSACTIONS: 'transactions',
+  INCOME: 'income',
 }
 
 export const DEFAULT_SOURCES = [
